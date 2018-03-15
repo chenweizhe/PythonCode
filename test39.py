@@ -28,3 +28,6 @@ b = AddDog('b')
 print(AddDog.count)
 c = AddDog('c')
 print(AddDog.count)
+
+# 当我们定义了一个类属性后，这个属性虽然归类所有，但类的所有实例都可以访问到。
+

@@ -68,3 +68,5 @@ class Student(object):
 bart = Student('Bart',Gender.Male)
 if bart.gender ==Gender.Male:
     print('test success')
+
+# Enum可以把一组相关常量定义在一个class中，且class不可变，而且成员可以直接比较。

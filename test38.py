@@ -80,3 +80,7 @@ print(getattr(obj,'power'))
 fn = getattr(obj,'power')
 print(fn)
 print(fn())
+
+# 通过内置的一系列函数 可以对任意一个Python对象进行剖析 拿到内部数据 要注意的是 只有在不知道对象信息的时候 我们
+# 才去获取对象信息
+# Python是动态语言 鸭子类型
