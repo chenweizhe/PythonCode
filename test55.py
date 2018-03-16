@@ -14,13 +14,34 @@
 # Python的os模块封装了常见的系统调用,包括fork()
 # 所以可以轻松创建子进程
 
-import os 
+# import os 
 
-print('Process(%s) start...' %os.getpid())
-# 只能在unix/linux下运行
-pid = os.fork() #返回进程数
-if pid == 0:
-    print('child process (%s) and my parent is %s ' %(os.getpid,os.getppid))
-else:
-       print('I (%s) just created a child process (%s).' % (os.getpid(), pid))
+# print('Process(%s) start...' %os.getpid())
+# # 只能在unix/linux下运行
+# pid = os.fork() #返回进程数
+# if pid == 0:
+#     print('child process (%s) and my parent is %s ' %(os.getpid,os.getppid))
+# else:
+#        print('I (%s) just created a child process (%s).' % (os.getpid(), pid))
+# Windows没有fork调用，上面的代码在Windows上无法运行
+# 常见的apache服务器就是由父进程监听端口 有新的请求时 就fork出子进程处理新的http请求
+
+# multiprocessing  由于Python是跨平台的，自然也应该提供一个跨平台的多进程支持。multiprocessing模块就是跨平台版本的多进程模块。
+# multiprocessing模块提供了一个Process类来代表一个进程对象，下面的例子演示了启动一个子进程并等待其结束：
+from multiprocessing import Process
+import os
+
+# 子进程执行
+def run_proc(name):
+    print('Run child process %s(%s)' %(name,os.getpid()))
+
+if __name__=='__main__':
+    print('Parent Process %s.' %os.getpid())
+    p = Process(target=run_proc,args=('test',))
+    print('Child process will start')
+    p.start()
+    p.join()  #join()方法可以等待子进程结束后再继续往下运行，通常用于进程间的同步。
+    print('child process end') 
+
+
 
