@@ -60,3 +60,6 @@ cursor.execute('select * from user where name=? and pwd=?',('abc','password'))
 
 cursor.close
 conn.close()
+
+#一般涉及IO的内容 在 Tty except finally里执行
+
